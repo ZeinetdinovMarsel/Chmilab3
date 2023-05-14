@@ -3954,7 +3954,7 @@ input[type="button"].btn-block {
 }
 
 .navbar {
-  position: fixed;
+  position: relative;
   width: 100%;
   z-index: 9999;
   display: flex;

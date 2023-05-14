@@ -97,6 +97,23 @@
 		  </div>
 		</div>
 	  </nav>
+	  <script>
+		let prevScrollpos = window.pageYOffset;
+		let scrollThresholdPercent = 0.2; // 20%
+	
+		window.onscroll = function() {
+			let currentScrollPos = window.pageYOffset;
+			let screenHeight = window.innerHeight;
+			let scrollThresholdPixels = screenHeight * scrollThresholdPercent;
+	
+			if (prevScrollpos > currentScrollPos && currentScrollPos > scrollThresholdPixels) {
+				document.getElementById("mainNav").style.position = "fixed";
+			} else {
+				document.getElementById("mainNav").style.position = "relative";
+			}
+			prevScrollpos = currentScrollPos;
+		}
+	</script>
 
 {% include 'inc/messages.html' %}
 {% block content %}
