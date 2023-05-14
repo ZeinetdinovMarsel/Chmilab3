@@ -176,6 +176,46 @@ ol {
 	background: #e1691d;
 }
 
+.delete-btn {
+	display: inline-block;
+	min-width: 196px;
+	text-align: center;
+	border: none;
+	padding: 15px 10px;
+	font-weight: 600;
+	font-size: 12px;
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+	background: #e1691d;
+	margin-left:5px;
+	padding: 10px 20px;
+}
+
+.change-btn {
+	display: inline-block;
+	min-width: 196px;
+	text-align: center;
+	border: none;
+	padding: 15px 10px;
+	font-weight: 600;
+	font-size: 12px;
+	position: relative;
+	color: #fff;
+	cursor: pointer;
+	background: #000000;
+	margin-right:5px;
+	padding: 10px 20px;
+}
+
+.change-btn:hover {
+	color: #ffffff; /* новый цвет при наведении */
+}
+
+.delete-btn:hover {
+	color: #ffffff; /* новый цвет при наведении */
+}
+
 .site-btn:hover {
 	color: #fff;
 }

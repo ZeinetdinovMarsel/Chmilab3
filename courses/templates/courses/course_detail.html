@@ -84,8 +84,8 @@
         <div data-aos="fade-right" >
           <h5 class="pb-3">Урок {{lesson.pozicioni}} <a id="vazhdo" href="{{ lesson.get_absolute_url }}#video"><span class="pl-4">{{lesson.titulli}}</span></a></h5>
           {% if request.user.profile.is_teacher == True %}
-          <a href="{% url 'courses:edit_row' lesson.pozicioni %}">Редактировать урок</a>
-          <a href="{% url 'courses:delete_row' lesson.pozicioni %}">Удалить урок</a>
+          <a href="{% url 'courses:edit_row' lesson.pozicioni %}" class="change-btn">Редактировать урок</a>
+          <a href="{% url 'courses:delete_row' lesson.pozicioni %}" class="delete-btn">Удалить урок</a>
           {% endif %} 
         </div>
         {% endfor %}
