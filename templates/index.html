@@ -1,0 +1,224 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section set-bg" data-setbg="{% static 'webuni/img/bg.jpg'%}">
+  <div class="container">
+    <div class="hero-text text-white">
+      {% if request.user.is_authenticated %}
+      <h2>Добро Пожаловать {% if request.user.profile.is_teacher == True %}
+         mesues,
+        {% endif %} {{ request.user.username|capfirst }}
+
+
+      </h2>
+      {% else %}
+      <h2>Лучшие бесплатные онлайн-курсы</h2>
+      {% endif %}
+      <p>ZXCSchool - это онлайн-платформа для проведения школьных лекций преданным своему делу персоналом с опытными преподавателями и тренерами, которые облегчат процесс обучения простым способом с помощью видеороликов.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+          <input name="search" type="text" placeholder="Искать курсы">
+          <button type="submit" class="site-btn">Искать курсы</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+<!-- categories section -->
+<section class="categories-section spad">
+  <div class="container">
+    <div class="section-title">
+      <h2 id="kurset">Категории и классы</h2>
+      <p>Классы делятся на различные категории в зависимости от предмета и преподавателя. Вы должны сначала зарегистрироваться, а затем посещать занятия.</p>
+    </div>
+    <div class="row">
+      {% for cat in category %}
+      <!-- categorie -->
+      <div data-aos="zoom-in" class="col-lg-4 col-md-6">
+        <div class="categorie-item">
+          <div class="ci-thumb set-bg" data-setbg="{{ cat.imazhi.url }}"></div>
+          <div class="ci-text">
+
+            <h5>{{cat.titulli|capfirst}}</h5>
+
+            <p>{{ cat.pershkrimi|capfirst }}</p>
+            <span><a class="btn btn-success" href="/courses/{{ cat.id }}">Просмотреть</a></span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- categories section end -->
+{% if request.user.is_authenticated %}
+{% else %}
+<section class="course-section spad">
+  <div class="container">
+    <div class="section-title mb-0">
+      <h2>Примеры курсов</h2>
+      <p class="pb-3">Вот несколько примеров курсов, которые студенты посещают на нашей платформе.</p>
+    </div>
+  </div>
+  <div class="course-warp">
+    <div class="row course-items-area">
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <div class="youtube" id="6K83dgjkQNw" style="width: 100%; height: 290px;"></div>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Геометрия</h5>
+              <p>Математика 10</p>
+              <div class="students">Класс 10</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/balda.jfif' %}"></div>
+              <p>Никита Ивановна, <span>Учителя</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 design">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <div class="youtube" id="6K83dgjkQNw" style="width: 100%; height: 290px;"></div>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Электролиз</h5>
+              <p>Химия</p>
+              <div class="students">Класс 11</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/ramisb.png' %}"></div>
+              <p>Рамись Зайнулович, <span>Учителя</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 web">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <div class="youtube" id="6K83dgjkQNw" style="width: 100%; height: 290px;"></div>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Тригонометрия</h5>
+              <p>Математика</p>
+              <div class="students">Класс 10</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/ramisb.png' %}"></div>
+              <p>Рамись Зайнулович, <span>Учителя</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- course -->
+      <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
+        <div class="course-item">
+          <div class="course-thumb set-bg" data-setbg="{% static 'webuni/img/courses/4.jpg' %}">
+            <div class="youtube" id="6K83dgjkQNw" style="width: 100%; height: 290px;"></div>
+          </div>
+          <div class="course-info">
+            <div class="course-text">
+              <h5>Электрическая цепь</h5>
+              <p>Физика</p>
+              <div class="students">Класс 10</div>
+            </div>
+            <div class="course-author">
+              <div class="ca-pic set-bg" data-setbg="{% static 'webuni/img/authors/ramisb.png' %}"></div>
+              <p>Рамись Зайнулович, <span>Учителя</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+<!-- course section end -->
+
+{% if request.user.is_authenticated %}
+
+<!-- signup section -->
+{% if request.user.profile.is_teacher == True %}
+<div class="container">
+  <h1 class="text-center">Ваша учетная запись имеет доступ к учителю</h1><br>
+  <p class="text-center">Имея учетную запись преподавателя, вы уже имеете полный доступ к этой платформе. Вы можете выполнять больше функций, чем в первоначальной учетной записи студента. Некоторыми из этих функций являются:</p>
+
+  <div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Вы можете создать свой собственный класс</h3>
+      <a href="{% url 'courses:krijo_klase' %}" class="btn btn-outline-primary m-4">Создать класс</a>
+    </div>
+    <div class="col-md-8">
+      <img class="img-fluid w-100" src="{% static 'webuni/img/categories/4.jpg' %}" alt="">
+    </div>
+  </div>
+
+  <div data-aos="fade-left" class="row mt-4 mb-4 bg-light">
+      <div class="col-md-8">
+        <img class="img-fluid w-100" src="{% static 'webuni/img/categories/2.jpg' %}" alt="">
+      </div>
+
+    <div class="col-md-4 text-center">
+      <h3 class="p-4">Вы можете создать свой собственный курс</h3>
+      <a href="{% url 'courses:krijo_lende' %}" class="btn btn-outline-primary m-4">Создать цепочку</a>
+  </div>
+</div>
+
+<div data-aos="fade-right" class="row mt-4 mb-4 bg-light">
+  <div class="col-md-4 text-center">
+    <h3 class="p-4">Вы можете загружать свои собственные уроки и видео.</h3>
+    <a href="{% url 'courses:krijo_mesim' %}" class="btn btn-outline-primary m-4">Создайте урок</a>
+  </div>
+  <div class="col-md-8">
+    <img class="img-fluid w-100" src="{% static 'webuni/img/categories/1.jpg' %}" alt="">
+  </div>
+</div>
+</div>
+
+{% else %}
+<section data-aos="zoom-out" class="signup-section spad">
+  <div class="signup-bg set-bg" data-setbg="{% static 'webuni/img/signup-bg.jpg' %}"></div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="signup-warp">
+          <div class="section-title text-white text-left">
+            <h2>Зарегистрируйтесь в качестве учителей</h2>
+            <p>Чтобы зарегистрироваться в качестве преподавателя на платформе, вы должны заполнить поля ниже, и тогда у вас будет полный доступ к загрузке курсов и видеороликов.</p>
+
+          </div>
+          <!-- signup form -->
+          <form action="/kerkesa/" method="post" class="signup-form">{% csrf_token %}
+            <input type="text" placeholder="Имя" name="name">
+            <input type="text" placeholder="Email" name="e-mail">
+            <input type="text" placeholder="Номер телефона" name="phone">
+            <button class="site-btn">Отправить запрос</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endif %}
+<!-- signup section end -->
+{% else %}
+{% endif %}
+
+{% endblock content %}

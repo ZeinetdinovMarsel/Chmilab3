@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- Информация о странице -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}">
+<div class="container">
+<div class="site-breadcrumb">
+<a href="/">Главная</a>
+<span>Класс /</span>
+<span>Уроки</span>
+</div>
+</div>
+</div>
+<!-- Конец информации о странице -->
+
+<!-- Раздел поиска -->
+<section class="search-section ss-other-page">
+<div class="container">
+<div class="search-warp">
+<div class="section-title text-white">
+<h2><span>Искать курсы</span></h2>
+</div>
+<div class="row">
+<div class="col-lg-10 offset-lg-1">
+<!-- Форма поиска -->
+<form method="post" action="{% url 'courses:kerko_kurs' %}" class="intro-newslatter"> {% csrf_token %}
+<input name="search" type="text" placeholder="Найти курс">
+<button type="submit" class="site-btn btn-dark">Найти курс</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Конец раздела поиска -->
+
+<!-- Раздел одного курса -->
+<section class="single-course spad pb-0">
+<div class="container">
+<div class="course-meta-area">
+<div class="row">
+<div class="col-lg-10 offset-lg-1">
+  <h3>{{course.titulli|capfirst}}</h3>
+      <div class="course-metas">
+        <div class="course-meta">
+          <div class="course-author">
+            <h6>Учитель</h6>
+            <p>{{course.krijues|capfirst}}, <span>Учитель</span></p>
+          </div>
+        </div>
+        <div class="course-meta">
+          <div class="cm-info">
+            <h6>Класс</h6>
+            <p>{{course.klasa}}</p>
+          </div>
+        </div>
+        <div class="course-meta">
+          <div class="cm-info">
+            <h6>Описание класса</h6>
+            <p>{{course.pershkrimi}}</p>
+          </div>
+        </div>
+        <div class="course-meta">
+          <div class="cm-info">
+            <h6>Количество уроков</h6>
+            <p>{{ course.lessons|length }}</p>
+          </div>
+        </div>
+      </div>
+      <a href="/courses/{{ course.id }}" class="site-btn price-btn">Назад</a>
+      <a href="#vazhdo" class="site-btn buy-btn">Продолжить урок</a>
+    </div>
+  </div>
+</div>
+<img src="img/courses/single.jpg" alt="" class="course-preview">
+<div class="row">
+  <div class="col-lg-10 offset-lg-1 course-list">
+    <div class="cl-item" id="lessons">
+      <h4>Уроки в этом классе</h4>
+      {% if course.lessons != None  %}
+        {% for lesson in course.lessons %}
+        <div data-aos="fade-right" >
+          <h5 class="pb-3">Урок {{lesson.pozicioni}} <a id="vazhdo" href="{{ lesson.get_absolute_url }}#video"><span class="pl-4">{{lesson.titulli}}</span></a></h5>
+          {% if request.user.profile.is_teacher == True %}
+          <a href="{% url 'courses:edit_row' lesson.pozicioni %}">Редактировать урок</a>
+          <a href="{% url 'courses:delete_row' lesson.pozicioni %}">Удалить урок</a>
+          {% endif %} 
+        </div>
+        {% endfor %}
+      {% endif %}
+      {% if course.lessons|length == 0 %}
+      <div class="alert alert-danger">Пока нет уроков для этого класса!</div>
+      {% endif %} 
+    </div>
+  </div>
+</div>
+</div>
+</section>
+
+{% endblock %}

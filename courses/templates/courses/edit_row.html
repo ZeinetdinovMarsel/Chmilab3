@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container">
+    <h1>Редактировать урок</h1>
+        <form method="post" enctype='multipart/form-data' novalidate>{% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn mb-4 btn-primary">Сохранить изменения</button>
+        </form>
+</div>
+{% endblock %}

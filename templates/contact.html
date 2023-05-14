@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/4.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="#">Главная</a>
+      <span>Контакты</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+
+<!-- search section -->
+<section class="search-section ss-other-page">
+  <div class="container">
+    <div class="search-warp">
+      <div class="section-title text-white">
+        <h2><span>Найдите свой курс</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <!-- search form -->
+          <form class="course-search-form">
+            <input type="text" placeholder="Курс">
+            <input type="text" class="last-m" placeholder="Категория">
+            <button class="site-btn btn-dark">Искать курс</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- search section end -->
+
+
+
+<!-- Page -->
+<section class="contact-page spad pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="contact-form-warp">
+          <div class="section-title text-white text-left">
+            <h2>Связаться с нами</h2>
+            <p>Напишите ваше обращение к нам, нам оно очень не важно.</p>
+          </div>
+          <form class="contact-form">
+            <input type="text" placeholder="Ваше Имя">
+            <input type="text" placeholder="Ваш E-mail">
+            <input type="text" placeholder="Предмет">
+            <textarea placeholder="Сообщение"></textarea>
+            <button class="site-btn">Отправленное сообщение</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="contact-info-area">
+          <div class="section-title text-left p-0">
+            <h2>Контактная информация</h2>
+          </div>
+          <div class="phone-number">
+            <span>Прямая линия</span>
+            <h2>88005553535</h2>
+          </div>
+          <ul class="contact-list">
+            <li>Молочный переулок, 4 <br>Ульяновск, Россия</li>
+            <li>+89378838255</li>
+            <li>zxCursed@rambler.ru</li>
+          </ul>
+          <div class="social-links">
+            <a href="#"><i class="fa fa-pinterest"></i></a>
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-dribbble"></i></a>
+            <a href="#"><i class="fa fa-behance"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Page end -->
+
+{% endblock content %}
